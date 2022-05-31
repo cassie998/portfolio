@@ -1,0 +1,58 @@
+from game_data import data
+import random
+
+def compare(Abo,Cassie):
+    if Abo > Cassie:
+        return ("You are right!")
+    else:
+        return ("You are wrong!")
+
+
+if __name__ == "__main__":
+    score = 0
+    active = True
+
+
+    while active:
+        choice = random.sample(data, 3)
+        Compare_A = choice[0]
+        Compare_B = choice[1]
+        Compare_C = choice[2]
+
+        random_name_A = Compare_A['name']
+        random_description_A = Compare_A['description']
+        random_country_A = Compare_A['country']
+        random_follower_A = Compare_A['follower_count']
+
+        random_name_B = Compare_B['name']
+        random_description_B = Compare_B['description']
+        random_country_B = Compare_B['country']
+        random_follower_B = Compare_B['follower_count']
+
+        first_choice = print(f"Compare A: {random_name_A}, {random_description_A}, from {random_country_A}")
+        second_choice = print(f"Against B: {random_name_B},{random_description_B}, from {random_country_B}")
+        selection = input(f"who has more followers? Type 'A' or 'B': ")
+
+
+        if selection == "A":
+            print(compare(random_follower_A, random_follower_B))
+            print(f"{random_name_A} has {random_follower_A}. {random_name_B} has {random_follower_B}.")
+            if compare(random_follower_A, random_follower_B) == "You are right!":
+                score += 1
+                print(score)
+                Compare_C = Compare_B
+            elif compare(random_follower_A, random_follower_B) == "You are wrong!":
+                active = False
+                print("Game is over.")
+        elif selection == "B":
+            print(compare(random_follower_B, random_follower_A))
+            print(f"{random_name_A} has {random_follower_A}. {random_name_B} has {random_follower_B}.")
+            if compare(random_follower_B, random_follower_A) == "You are right!":
+                score = score + 1
+                print(score)
+                Compare_C = Compare_A
+            elif compare(random_follower_B, random_follower_A) == "You are wrong!":
+                active = False
+                print("Game is over.")
+
+
